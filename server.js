@@ -4,8 +4,14 @@ const ShortUrl = require('./models/shortUrl')
 const app = express()
 
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb://0.0.0.0:27017/prashantShortUrls', {
-  useNewUrlParser: true, useUnifiedTopology: true
+
+const db = 'mongodb+srv://himanshu852279:Eatshit123@cluster0.xzp9cgs.mongodb.net/ShortURL?retryWrites=true&w=majority&appName=AtlasApp';
+
+mongoose.connect(db,{    
+}).then(()=>{
+   console.log("Connected");
+}).catch((err)=>{
+   console.log(err);
 })
 
 
@@ -27,10 +33,10 @@ app.get('/:shortUrl', async (req, res) => {
   const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
   if (shortUrl == null) return res.sendStatus(404)
 
-  shortUrl.clicks++
-  shortUrl.save()
+  shortUrl.clicks++;
+  shortUrl.save();
 
-  res.redirect(shortUrl.full)
+  res.redirect(shortUrl.full);
 })
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 8000);
