@@ -5,7 +5,7 @@ const app = express()
 
 mongoose.set('strictQuery', true);
 
-const db = 'mongodb+srv://himanshu852279:Eatshit123@cluster0.xzp9cgs.mongodb.net/ShortURL?retryWrites=true&w=majority&appName=AtlasApp';
+const db = ;
 
 mongoose.connect(db,{    
 }).then(()=>{
